@@ -21,7 +21,6 @@ function validateId(request, response, next){
   return next();
 };
 
-
 app.use(express.json());
 app.use(cors());
 app.use('/repositories/:id', validateId);
@@ -76,8 +75,7 @@ app.post("/repositories/:id/like",validateId, (request, response) => {
   const { id } = request.params;
 
   repository = findRepository(id);
-  new_likes = repository.likes + 1;
-  repository.likes = new_likes;
+  repository.likes += 1;
 
   return response.json(repository);
 });
